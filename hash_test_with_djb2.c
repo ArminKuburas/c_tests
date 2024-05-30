@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 07:48:57 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/30 10:36:42 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:17:35 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_hash_table
 	char			*key;
 	unsigned long	value;
 }	t_hash_table;
-
 
 // ((hash << 5) + hash) + str[i] == hash * 33 + str[i]
 /**
@@ -148,32 +147,34 @@ t_hash_table	*search_hash(t_hash_table *hash_table, char *key,
 
 int	main(int argc, char **argv)
 {
-	t_hash_table	*hash_table;
-	t_hash_table	*found;
+	// t_hash_table	*hash_table;
+	t_cool_table	*found;
+	t_cool_table	*cool_table;
 
 	if (argc < 2)
 	{
 		printf("Usage: %s <string> [string]...\n", argv[0]);
 		return (1);
 	}
-	hash_table = calloc(16, sizeof(t_hash_table));
-	if (!hash_table)
+	cool_table = calloc(16, sizeof(t_cool_table));
+	if (!cool_table)
 		return (1);
 	while (argc > 1)
 	{
-		if (insert_hash(hash_table, argv[argc - 1], 16) == 1)
+		if (insert_hash((t_hash_table *)cool_table, argv[argc - 1], 16) == 1)
 		{
 			printf("Error: table full\n");
-			free(hash_table);
+			free(cool_table);
 			return (1);
 		}
 		argc--;
 	}
 	printf("Searching for '%s'\n", "macarony");
-	found = search_hash(hash_table, "macarony", 16);
+	found = (t_cool_table *)search_hash((t_hash_table *)cool_table, "macarony", 16);
 	if (found)
 		printf("Found '%s' with hash value %lu\n", found->key, found->value);
 	else
 		printf("'%s' not found\n", "macarony");
+	free(cool_table);
 	return (0);
 }
