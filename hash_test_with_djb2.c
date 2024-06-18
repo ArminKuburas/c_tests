@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 07:48:57 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/30 22:45:50 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:40:07 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	insert_hash(t_container *container, char *key)
 	if (hash_table[index].key)
 	{
 		if (handle_collision(container, key, hash) == 1)
-			return (-1);
+			return (1);
 		container_increased(container);
 		return (0);
 	}
