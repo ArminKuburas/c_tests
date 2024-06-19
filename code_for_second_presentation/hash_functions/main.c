@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:10:12 by akuburas          #+#    #+#             */
-/*   Updated: 2024/06/19 10:28:05 by akuburas         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:38:10 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,18 @@ int	main(void)
 		if (insert_hash(hash_table, input, table_size) == 1)
 		{
 			printf("Failed to insert key\n");
-			break ;
+			exit(1);
 		}
 		i++;
 		load_factor = (float)i / (float)table_size;
 		if (load_factor > 0.7)
 		{
+			printf("Resizing hash table\n");
 			if (resize_hash(table_size * 2, &hash_table, table_size) == 1)
 			{
 				printf("Failed to resize hash table\n");
 				free_hash(hash_table, table_size);
-				break ;
+				exit(1);
 			}
 			table_size *= 2;
 		}
@@ -63,7 +64,8 @@ int	main(void)
 	while (i < table_size)
 	{
 		if (hash_table[i].key)
-			printf("Key: %s, Value: %lu\n", hash_table[i].key, hash_table[i].value);
+			printf("Key: %s, Value: %lu Position: %d\n", hash_table[i].key,
+				hash_table[i].value, i);
 		i++;
 	}
 	free_hash(hash_table, table_size);
