@@ -2,7 +2,6 @@ NAME = hash.a
 
 SRCS =	create_hash.c \
 		free_hash.c \
-		hash.c \
 		insert_hash.c \
 		search_hash.c \
 		resize_hash.c \
@@ -25,6 +24,7 @@ ${NAME} : ${OBJS}
 	${LIB} ${NAME}
 
 %.o : %.c
+	${CC} ${CFLAGS} -c $< -o $@
 
 clean :
 	${RM} ${OBJS}
