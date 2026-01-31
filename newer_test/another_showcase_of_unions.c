@@ -6,7 +6,7 @@
 /*   By: akuburas <akuburas@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 15:55:56 by akuburas          #+#    #+#             */
-/*   Updated: 2024/05/30 16:20:28 by akuburas         ###   ########.fr       */
+/*   Updated: 2026/01/31 17:06:40 by akuburas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ const char *g_colors[] = {
 	"green",
 	"blue",
 	"yellow",
+	"orange",
 };
 
 typedef union u_data
